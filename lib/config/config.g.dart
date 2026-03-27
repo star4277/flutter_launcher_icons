@@ -14,8 +14,13 @@ Config _$ConfigFromJson(Map json) => $checkedCreate(
           imagePath: $checkedConvert('image_path', (v) => v as String?),
           android: $checkedConvert('android', (v) => v ?? false),
           ios: $checkedConvert('ios', (v) => v ?? false),
+          ohos: $checkedConvert('ohos', (v) => v ?? false),
+          backgroundColorOhos:
+              $checkedConvert('background_color_ohos', (v) => v as String?),
           imagePathAndroid:
               $checkedConvert('image_path_android', (v) => v as String?),
+          imagePathOhos:
+              $checkedConvert('image_path_ohos', (v) => v as String?),
           imagePathIOS: $checkedConvert('image_path_ios', (v) => v as String?),
           imagePathIOSDarkTransparent: $checkedConvert(
               'image_path_ios_dark_transparent', (v) => v as String?),
@@ -53,6 +58,7 @@ Config _$ConfigFromJson(Map json) => $checkedCreate(
       fieldKeyMap: const {
         'imagePath': 'image_path',
         'imagePathAndroid': 'image_path_android',
+        'imagePathOhos': 'image_path_ohos',
         'imagePathIOS': 'image_path_ios',
         'imagePathIOSDarkTransparent': 'image_path_ios_dark_transparent',
         'imagePathIOSTintedGrayscale': 'image_path_ios_tinted_grayscale',
@@ -66,7 +72,8 @@ Config _$ConfigFromJson(Map json) => $checkedCreate(
         'backgroundColorIOS': 'background_color_ios',
         'webConfig': 'web',
         'windowsConfig': 'windows',
-        'macOSConfig': 'macos'
+        'macOSConfig': 'macos',
+        'backgroundColorOhos': 'background_color_ohos'
       },
     );
 
@@ -74,7 +81,9 @@ Map<String, dynamic> _$ConfigToJson(Config instance) => <String, dynamic>{
       'image_path': instance.imagePath,
       'android': instance.android,
       'ios': instance.ios,
+      'ohos': instance.ohos,
       'image_path_android': instance.imagePathAndroid,
+      'image_path_ohos': instance.imagePathOhos,
       'image_path_ios': instance.imagePathIOS,
       'image_path_ios_dark_transparent': instance.imagePathIOSDarkTransparent,
       'image_path_ios_tinted_grayscale': instance.imagePathIOSTintedGrayscale,
@@ -90,4 +99,5 @@ Map<String, dynamic> _$ConfigToJson(Config instance) => <String, dynamic>{
       'web': instance.webConfig,
       'windows': instance.windowsConfig,
       'macos': instance.macOSConfig,
+      'background_color_ohos': instance.backgroundColorOhos,
     };

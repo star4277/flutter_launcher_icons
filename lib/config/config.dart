@@ -22,8 +22,10 @@ class Config {
   const Config({
     this.imagePath,
     this.android = false,
+    this.ohos = false,
     this.ios = false,
     this.imagePathAndroid,
+    this.imagePathOhos,
     this.imagePathIOS,
     this.imagePathIOSDarkTransparent,
     this.imagePathIOSTintedGrayscale,
@@ -35,6 +37,7 @@ class Config {
     this.removeAlphaIOS = false,
     this.desaturateTintedToGrayscaleIOS = false,
     this.backgroundColorIOS = '#ffffff',
+    this.backgroundColorOhos,
     this.webConfig,
     this.windowsConfig,
     this.macOSConfig,
@@ -113,6 +116,9 @@ class Config {
   /// Returns true or path if ios config is enabled
   final dynamic ios; // path or bool
 
+  /// Returns true or path if ohos config is enabled
+  final dynamic ohos; // path or bool;
+
   /// Image path specific to android
   @JsonKey(name: 'image_path_android')
   final String? imagePathAndroid;
@@ -120,6 +126,10 @@ class Config {
   /// Image path specific to ios
   @JsonKey(name: 'image_path_ios')
   final String? imagePathIOS;
+
+  /// Image path specific to ohos
+  @JsonKey(name: 'image_path_ohos')
+  final String? imagePathOhos;
 
   /// IOS image_path_ios_dark_transparent
   @JsonKey(name: 'image_path_ios_dark_transparent')
@@ -160,6 +170,10 @@ class Config {
   /// IOS background_color_ios
   @JsonKey(name: 'background_color_ios')
   final String backgroundColorIOS;
+
+  /// OHOS background_color_ohos
+  @JsonKey(name: 'background_color_ohos')
+  final String? backgroundColorOhos;
 
   /// Web platform config
   @JsonKey(name: 'web')
@@ -216,10 +230,18 @@ class Config {
   /// if we are needing a new iOS icon
   bool get isNeedingNewIOSIcon => ios != false;
 
+  /// if we are needing a new ohos icon
+  bool get isNeedingNewOhosIcon => ohos != false;
+
   /// Method for the retrieval of the Android icon path
   /// If image_path_android is found, this will be prioritised over the image_path
   /// value.
   String? getImagePathAndroid() => imagePathAndroid ?? imagePath;
+
+  /// Method for the retrieval of the Ohos icon path
+  /// If image_path_ohos is found, this will be prioritised over the image_path
+  /// value.
+  String? getImagePathOhos() => imagePathOhos ?? imagePath;
 
   // TODO(RatakondalaArun): refactor after Android & iOS configs will be refactored to the new schema
   // https://github.com/fluttercommunity/flutter_launcher_icons/issues/394

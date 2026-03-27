@@ -12,6 +12,7 @@ import 'package:flutter_launcher_icons/custom_exceptions.dart';
 import 'package:flutter_launcher_icons/ios.dart' as ios_launcher_icons;
 import 'package:flutter_launcher_icons/logger.dart';
 import 'package:flutter_launcher_icons/macos/macos_icon_generator.dart';
+import 'package:flutter_launcher_icons/ohos.dart' as ohos_launcher_icons;
 import 'package:flutter_launcher_icons/web/web_icon_generator.dart';
 import 'package:flutter_launcher_icons/windows/windows_icon_generator.dart';
 import 'package:path/path.dart' as path;
@@ -137,10 +138,12 @@ Future<void> createIconsFromConfig(
 
   final concurrentIconCreation = <Future<void>>[];
   if (flutterConfigs.isNeedingNewAndroidIcon) {
-    concurrentIconCreation.add(android_launcher_icons.createDefaultIcons(flutterConfigs, flavor));
+    concurrentIconCreation
+        .add(android_launcher_icons.createDefaultIcons(flutterConfigs, flavor));
   }
   if (flutterConfigs.hasAndroidAdaptiveConfig) {
-    concurrentIconCreation.add(android_launcher_icons.createAdaptiveIcons(flutterConfigs, flavor));
+    concurrentIconCreation.add(
+        android_launcher_icons.createAdaptiveIcons(flutterConfigs, flavor),);
   }
   if (flutterConfigs.hasAndroidAdaptiveMonochromeConfig) {
     concurrentIconCreation.add(
@@ -159,6 +162,9 @@ Future<void> createIconsFromConfig(
   }
   if (flutterConfigs.isNeedingNewIOSIcon) {
     await ios_launcher_icons.createIcons(flutterConfigs, flavor);
+  }
+  if (flutterConfigs.isNeedingNewOhosIcon) {
+    await ohos_launcher_icons.createIcons(flutterConfigs, flavor);
   }
 
   // Generates Icons for given platform
